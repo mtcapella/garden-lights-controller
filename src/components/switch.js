@@ -3,7 +3,7 @@ import "./switch.scss";
 
 import { getState, setStateOn, setStateOff } from "../services/lights.service";
 
-export default function Switch() {
+export default function Switch({handleLogout}) {
   const [relayState, setRelayState] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
@@ -54,7 +54,7 @@ export default function Switch() {
   };
 
   return (
-    <div className="layout">
+    <>
       <input
         type="checkbox"
         id="switch"
@@ -62,7 +62,8 @@ export default function Switch() {
         disabled={loading}
         onChange={handleChange}
       />
-      <label for="switch">Toggle</label>
-    </div>
+      <label htmlFor="switch">Toggle</label>
+      <button onClick={handleLogout}>Cerrar sesión</button>
+    </>
   );
 }
