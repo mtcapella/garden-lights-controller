@@ -24,10 +24,10 @@ export default function Switch({handleLogout}) {
         console.error("Error al obtener el estado del relé:", error);
       }
     }
-    // Al iniciar el componente lanza la primera comprobacion del estado del relé
+    // Al iniciar el componente Switch lanza la primera comprobacion del estado del relé
     fetchGetState();
 
-    // se establece un intervalo de 5 segundos para hacer comprobaciones periodicas del estado
+    // se inicia un intervalo de 5 segundos para comprobar el estado del rele
 
     const intervalId = setInterval(fetchGetState, 5000); // Comprobación cada 5 segundos
 
@@ -58,12 +58,16 @@ export default function Switch({handleLogout}) {
       <input
         type="checkbox"
         id="switch"
-        checked={relayState}
-        disabled={loading}
-        onChange={handleChange}
+        checked={relayState} // se marca activo o no en funcion del estado del relé 
+        disabled={loading} // mientras la página esta cargando el interuptor se desactiva para evitar enviar dos peticiones juntas
+        onChange={handleChange} // al cambiar el estado del switch llama la funcion handle change
       />
       <label htmlFor="switch">Toggle</label>
-      <button onClick={handleLogout}>Cerrar sesión</button>
+      <button onClick={handleLogout}
+      // boton de cerrar seision
+      > 
+        Cerrar sesión</button> 
     </>
+
   );
 }
